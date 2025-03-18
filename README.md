@@ -172,5 +172,74 @@ samtools markdup -r proband_fixmate.sorted.bam proband_dedup.bam
 samtools index father_dedup.bam
 samtools index mother_dedup.bam
 samtools index proband_dedup.bam
+```
+
+### PROJECT IMAGES
+
+# Father Dataset 
+![Image](https://github.com/user-attachments/assets/b7b2f0ce-bb5a-4e23-b3de-42275b84560a)
+
+![Image](https://github.com/user-attachments/assets/3e7f28fb-e519-4e30-90e0-c7bede2c94b3)
+
+# Mother Dataset
+
+![Image](https://github.com/user-attachments/assets/801bd7cd-5b31-4e01-b8a6-39138f6095bc)
+
+# Child Dataset
+
+![Image](https://github.com/user-attachments/assets/1b58d01d-66ad-48f9-976a-9ab7fd7d4192)
+
+# Getting hg19 Version of the Human Dataset
+
+![Image](https://github.com/user-attachments/assets/6ffb5e87-869a-468f-a904-c90bd9ec8065)
+
+# Running Fastqc on the Datasets
+
+![Image](https://github.com/user-attachments/assets/4abc3157-3e06-432f-881a-28e00f806e9f)
+
+![Image](https://github.com/user-attachments/assets/8b4b673c-7a7e-480d-9c43-f06fe2378140)
+
+![Image](https://github.com/user-attachments/assets/87321358-57eb-4c04-827b-dbbeb29f570c)
+
+# Converting SAM files to BAM files
+
+![Image](https://github.com/user-attachments/assets/403fc08d-021f-4b87-99f8-ca362bba9aa4)
+
+# Sorting the BAM files
+
+![Image](https://github.com/user-attachments/assets/114c6cac-62ff-4773-8cd1-06d06b0eddb8)
+
+# Indexing the BAM files
+
+![Image](https://github.com/user-attachments/assets/fdadcf44-0547-4022-bb95-e53692959ec7)
+
+# Filtering the BAM Files
+
+![Image](https://github.com/user-attachments/assets/1ccb9846-90af-490f-a687-ac7ae6359819)
+
+# Removing Duplicate Reads
+
+![Image](https://github.com/user-attachments/assets/e09e3705-89da-4948-be17-34891740d95a)
+
+# Fixmate sorted files
+
+![Image](https://github.com/user-attachments/assets/0190da7b-2d3d-4fa2-989b-0ce30a051feb)
+
+# Sorting the fixmated bam files according to coordinates
+ 
+![Image](https://github.com/user-attachments/assets/3b78b4e0-1e9d-4440-b88f-a449c7ba3e21)
+
+# Removing duplicates
+ ![Image](https://github.com/user-attachments/assets/0db01224-2bde-4f2b-9369-0bda541492db)
+
+# VARIANT CALLING
+
+![Image](https://github.com/user-attachments/assets/50df9a90-5bc4-4233-814b-235cc0be1cd2)
+
+ 
+
+
+
+
 
 
