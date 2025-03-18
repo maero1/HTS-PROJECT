@@ -37,7 +37,7 @@ https://zenodo.org/record/3243160/files/hg19_chr8.fa.gz
 # Quality Check
 
 After sourcing the data, the next step was to do a quality check on the data using FastQC in Linux Environment. 
-The code used to do this was 
 
+Please head over to the #High Throughput Project to view the remaining project.
 
 
