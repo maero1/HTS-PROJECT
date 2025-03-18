@@ -1,21 +1,18 @@
+# **HIGHTHROUGHPUT PROJECT**
 
-#HIGHTHROUGHPUT PROJECT  
+## **Step 1: Downloading the Datasets**
 
-## **Step 1: Downloading the Datasets**  
-
-### **Father Dataset**  
+### **Father Dataset**
 ```bash
 wget https://zenodo.org/record/3243160/files/father_R1.fq.gz
 wget https://zenodo.org/record/3243160/files/father_R2.fq.gz
 ```
-
-### **Mother Dataset**  
+### **Mother Dataset**
 ```bash
 wget https://zenodo.org/record/3243160/files/mother_R1.fq.gz
 wget https://zenodo.org/record/3243160/files/mother_R2.fq.gz
 ```
-
-### **Child Dataset (Proband)**  
+### **Child Dataset (Proband)**
 ```bash
 wget https://zenodo.org/record/3243160/files/proband_R1.fq.gz
 wget https://zenodo.org/record/3243160/files/proband_R2.fq.gz
@@ -23,14 +20,14 @@ wget https://zenodo.org/record/3243160/files/proband_R2.fq.gz
 
 ---
 
-## **Step 2: Downloading the hg19 Reference Genome**  
+## **Step 2: Downloading the hg19 Reference Genome**
 ```bash
 wget https://zenodo.org/record/3243160/files/hg19_chr8.fa.gz
 ```
 
 ---
 
-## **Step 3: Running FastQC on the Datasets**  
+## **Step 3: Running FastQC on the Datasets**
 ```bash
 fastqc father_R1.fq.gz
 fastqc father_R2.fq.gz
@@ -42,14 +39,14 @@ fastqc proband_R2.fq.gz
 
 ---
 
-## **Step 4: Indexing the Reference Genome**  
+## **Step 4: Indexing the Reference Genome**
 ```bash
 bwa index hg19_chr8.fa.gz
 ```
 
 ---
 
-## **Step 5: Read Mapping**  
+## **Step 5: Read Mapping**
 ```bash
 bwa mem -t 8 hg19_chr8.fa.gz father_R1.fq.gz father_R2.fq.gz > fatheroutput.sam
 bwa mem -t 8 hg19_chr8.fa.gz mother_R1.fq.gz mother_R2.fq.gz > motheroutput.sam
@@ -58,7 +55,7 @@ bwa mem -t 8 hg19_chr8.fa.gz proband_R1.fq.gz proband_R2.fq.gz > probandoutput.s
 
 ---
 
-## **Step 6: Converting SAM Files to BAM Files**  
+## **Step 6: Converting SAM Files to BAM Files**
 ```bash
 samtools view -bS fatheroutput.sam > fatheroutput.bam
 samtools view -bS motheroutput.sam > motheroutput.bam
@@ -67,7 +64,7 @@ samtools view -bS probandoutput.sam > probandoutput.bam
 
 ---
 
-## **Step 7: Sorting the BAM Files**  
+## **Step 7: Sorting the BAM Files**
 ```bash
 samtools sort fatheroutput.bam -o fatheroutput.sorted.bam
 samtools sort motheroutput.bam -o motheroutput.sorted.bam
@@ -76,7 +73,7 @@ samtools sort probandoutput.bam -o probandoutput.sorted.bam
 
 ---
 
-## **Step 8: Indexing the BAM Files**  
+## **Step 8: Indexing the BAM Files**
 ```bash
 samtools index fatheroutput.sorted.bam
 samtools index motheroutput.sorted.bam
@@ -85,7 +82,7 @@ samtools index probandoutput.sorted.bam
 
 ---
 
-## **Step 9: Filtering the BAM Files**  
+## **Step 9: Filtering the BAM Files**
 ```bash
 samtools view -F 4 -q 30 -b fatheroutput.sorted.bam > father_filtered.bam
 samtools view -F 4 -q 30 -b motheroutput.sorted.bam > mother_filtered.bam
@@ -94,30 +91,30 @@ samtools view -F 4 -q 30 -b probandoutput.sorted.bam > proband_filtered.bam
 
 ---
 
-## **Step 10: Removing Duplicate Reads**  
+## **Step 10: Removing Duplicate Reads**
 
-### **Sorting BAM Files by Name**  
+### **Sorting BAM Files by Name**
 ```bash
 samtools sort -n father_filtered.bam -o father_filtered.name_sorted.bam
 samtools sort -n mother_filtered.bam -o mother_filtered.name_sorted.bam
 samtools sort -n proband_filtered.bam -o proband_filtered.name_sorted.bam
 ```
 
-### **Fixmating Sorted Files**  
+### **Fixmating Sorted Files**
 ```bash
 samtools fixmate -m father_filtered.name_sorted.bam father_fixmate.bam
 samtools fixmate -m mother_filtered.name_sorted.bam mother_fixmate.bam
 samtools fixmate -m proband_filtered.name_sorted.bam proband_fixmate.bam
 ```
 
-### **Sorting Fixmated BAM Files by Coordinates**  
+### **Sorting Fixmated BAM Files by Coordinates**
 ```bash
 samtools sort father_fixmate.bam -o father_fixmate.sorted.bam
 samtools sort mother_fixmate.bam -o mother_fixmate.sorted.bam
 samtools sort proband_fixmate.bam -o proband_fixmate.sorted.bam
 ```
 
-### **Removing Duplicates**  
+### **Removing Duplicates**
 ```bash
 samtools markdup -r father_fixmate.sorted.bam father_dedup.bam
 samtools markdup -r mother_fixmate.sorted.bam mother_dedup.bam
@@ -126,12 +123,10 @@ samtools markdup -r proband_fixmate.sorted.bam proband_dedup.bam
 
 ---
 
-## **Step 11: Variant Calling**  
+## **Step 11: Variant Calling**
 
-### **Indexing the Deduplicated BAM Files**  
-
+### **Indexing the Deduplicated BAM Files**
 ```bash
 samtools index father_dedup.bam
 samtools index mother_dedup.bam
 samtools index proband_dedup.bam
-```
